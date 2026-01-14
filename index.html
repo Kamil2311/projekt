@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grafik – Godziny do wzięcia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <h1 class="app-title">Grafik pracy</h1>
+
+    <div class="topbar-actions">
+      <span class="badge" id="session-badge">Nie zalogowano</span>
+      <button class="btn" id="new-column">+ Nowa kolumna</button>
+      <button class="btn btn-ghost" id="logout">Wyloguj</button>
+    </div>
+  </header>
+
+  <!-- ZAKŁADKI + AKCJE -->
+  <div class="tabsbar">
+    <div class="month-picker">
+      <label class="month-label">
+        <span>Miesiąc</span>
+        <select id="month-select"></select>
+      </label>
+    </div>
+
+    <div class="tabs-actions">
+      <button class="btn btn-ghost" id="copy-cols-next">Kopiuj kolumny → następny miesiąc</button>
+
+      <div class="filters" id="pool-filters">
+        <label class="filter">
+          <span>Filtruj priorytet</span>
+          <select id="filter-priority">
+            <option value="all">Wszystkie</option>
+            <option value="high">Wysoki</option>
+            <option value="medium">Średni</option>
+            <option value="low">Niski</option>
+          </select>
+        </label>
+
+        <label class="filter">
+          <span>Dzień od</span>
+          <input id="filter-start-min" type="number" min="1" max="31" placeholder="np. 1" />
+        </label>
+
+        <label class="filter">
+          <span>Dzień do</span>
+          <input id="filter-start-max" type="number" min="1" max="31" placeholder="np. 15" />
+        </label>
+
+        <button class="btn btn-ghost" id="filter-clear">Wyczyść filtry</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="board" id="board"></main>
+
+  <!-- LOGIN OVERLAY -->
+  <div class="overlay" id="login-overlay" aria-hidden="true">
+    <div class="login-card">
+      <h2>Zaloguj się</h2>
+
+      <label class="field">
+        <span>Użytkownik</span>
+        <select id="login-user"></select>
+      </label>
+
+      <label class="field">
+        <span>Hasło</span>
+        <input id="login-pass" type="password" placeholder="Wpisz hasło" />
+      </label>
+
+      <button class="btn" id="login-btn">Zaloguj</button>
+
+      <p class="login-hint">
+        Admin 1/2: DaGrasso54321<br/>
+        Konsultant 1–13: DaGrasso123
+      </p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

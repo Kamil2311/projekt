@@ -1,0 +1,481 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.topbar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #111827;
+}
+
+.btn {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.board {
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.list {
+  width: 300px;
+  background: #111827;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+/* === NAPRAWA "PUSTYCH KOMENTARZY" === */
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;          /* realny odstęp między kartami */
+  min-height: 0;     /* 🔥 KLUCZOWE — usuwa puste sloty */
+  padding: 0;
+  margin: 0;
+}
+
+/* tylko gdy przeciągasz nad kolumną */
+.cards.drag-over {
+  min-height: 40px;  /* miejsce na drop, ale TYLKO w trakcie drag */
+  outline: 2px dashed rgba(147, 197, 253, 0.9);
+  outline-offset: 6px;
+}
+
+.card {
+  margin: 0;         /* 🔥 usuwa stare "puste kafelki" */
+  padding: 10px;
+  border-radius: 12px;
+}
+/* === DRAG & DROP – DROP SPACE FIX === */
+
+.cards {
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.cards.drag-over {
+  min-height: 40px;
+}
+/* pusta kolumna nadal ma miejsce do upuszczania */
+.cards {
+  min-height: 36px;
+}
+
+/* opcjonalnie: ładniejsze podświetlenie całej kolumny */
+.list.drag-over {
+  outline: 2px dashed rgba(147, 197, 253, 0.9);
+  outline-offset: 6px;
+}
+.card.drop-before {
+  border-top: 2px solid rgba(147, 197, 253, 0.9);
+}
+/* LINIA MIĘDZY KARTAMI */
+.card.drop-before {
+  position: relative;
+}
+
+.card.drop-before::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(147, 197, 253, 0.95);
+}
+.list.drag-over {
+  outline: 2px dashed rgba(147, 197, 253, 0.65);
+  outline-offset: 6px;
+}
+.card__title {
+  font-weight: 700;
+}
+
+.card__comment {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #94a3b8;
+  white-space: pre-wrap;
+}
+
+/* żeby dało się upuścić na pustą kolumnę */
+.cards {
+  min-height: 36px;
+}
+.card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.card__icon {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.card__icon:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.card__icon.is-active {
+  color: #e2e8f0;
+  background: rgba(37, 99, 235, 0.18);
+}
+
+.card__title {
+  font-weight: 700;
+}
+
+.card__assignee {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.card__comment {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #94a3b8;
+  white-space: pre-wrap;
+}
+
+/* żeby dało się upuścić na pustą kolumnę */
+.cards {
+  min-height: 36px;
+}
+.card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.card__icon {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.card__icon:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.card__icon.is-active {
+  color: #e2e8f0;
+  background: rgba(37, 99, 235, 0.18);
+}
+
+.card__title {
+  font-weight: 700;
+}
+
+.card__assignee {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.card__comment {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #94a3b8;
+  white-space: pre-wrap;
+}
+
+/* żeby dało się upuścić na pustą kolumnę */
+.cards {
+  min-height: 36px;
+}
+.list__title-btn {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.list__title-btn:hover {
+  text-decoration: underline;
+}
+
+.list__hint {
+  font-size: 12px;
+  color: #94a3b8;
+}
+.app-title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #e2e8f0;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.badge {
+  font-size: 12px;
+  color: #cbd5e1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+/* overlay login */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.overlay.show {
+  display: flex;
+}
+
+.login-card {
+  width: 360px;
+  max-width: 100%;
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.login-card h2 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+.field {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.field span {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: #0b1220;
+  color: #e2e8f0;
+  outline: none;
+}
+
+.login-hint {
+  margin: 12px 0 0 0;
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+/* === Tabs (miesiące) === */
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.tab {
+  border: 1px solid rgba(255,255,255,0.14);
+  background: transparent;
+  color: #cbd5e1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.tab.active {
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(37, 99, 235, 0.45);
+  color: #e2e8f0;
+}
+/* === Tabsbar layout === */
+.tabsbar {
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.tabs-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px 12px;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.filter span {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.filter select,
+.filter input {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: #0b1220;
+  color: #e2e8f0;
+  outline: none;
+}
+
+/* === Priorytet na karcie === */
+.card__prio {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #e2e8f0;
+  margin-right: 6px;
+}
+
+.card__prio.high {
+  background: rgba(220, 38, 38, 0.20);
+  border-color: rgba(220, 38, 38, 0.45);
+}
+
+.card__prio.medium {
+  background: rgba(245, 158, 11, 0.20);
+  border-color: rgba(245, 158, 11, 0.45);
+}
+
+.card__prio.low {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.40);
+}
+/* Filtry w kolumnie "Godziny do wzięcia" */
+.pool-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0 8px;
+}
+
+.pool-filters label {
+  display: block;
+}
+
+.pool-filters .lbl {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.pool-filters select,
+.pool-filters input {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: #0b1220;
+  color: #e2e8f0;
+  outline: none;
+}
+
+.pool-filters .mini-btn {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: transparent;
+  color: #e2e8f0;
+  cursor: pointer;
+}
+.month-picker {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.month-label span {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+#month-select {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: #0b1220;
+  color: #e2e8f0;
+  outline: none;
+  min-width: 220px;
+}
+
